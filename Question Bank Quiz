@@ -1,0 +1,172 @@
+import com.google.gson.Gson;
+
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class QuestionBankQuiz {
+
+    static class QuestionBank {
+        int version;
+        List<Question> questions;
+    }
+
+    static class Question {
+        int id;
+        String subject;
+        String question;
+        List<Option> options;
+        String correctOptionId;
+        String explanation;
+    }
+
+    static class Option {
+        String id;
+        String text;
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        String jsonFile = "questions.json";
+
+        if (args.length > 0) {
+            jsonFile = args[0];
+        }
+
+        Gson gson = new Gson();
+        QuestionBank questionBank;
+
+        try (Reader reader = new InputStreamReader(
+                new FileInputStream(jsonFile),
+                StandardCharsets.UTF_8)) {
+            questionBank = gson.fromJson(reader, QuestionBank.class);
+        }
+
+        if (questionBank == null
+                || questionBank.questions == null
+                || questionBank.questions.isEmpty()) {
+            System.out.println("No questions were found in " + jsonFile);
+            return;
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        int totalQuestions = questionBank.questions.size();
+        int score = 0;
+
+        String[] userAnswerIds = new String[totalQuestions];
+        String[] userAnswerTexts = new String[totalQuestions];
+
+        System.out.println("=================================");
+        System.out.println("          QUESTION BANK QUIZ");
+        System.out.println("=================================");
+
+        for (int i = 0; i < totalQuestions; i++) {
+
+            Question currentQuestion = questionBank.questions.get(i);
+
+            List<Option> shuffledOptions =
+                    new ArrayList<>(currentQuestion.options);
+            Collections.shuffle(shuffledOptions);
+
+            System.out.println();
+            System.out.println("Completed: " + i + " | Pending: "
+                    + (totalQuestions - i));
+            System.out.println("Question " + (i + 1) + " / "
+                    + totalQuestions);
+            System.out.println(currentQuestion.question);
+            System.out.println();
+
+            for (int j = 0; j < shuffledOptions.size(); j++) {
+                char optionLetter = (char) ('A' + j);
+                System.out.println((j + 1) + ". " + optionLetter + ") "
+                        + shuffledOptions.get(j).text);
+            }
+
+            int choice = readChoice(scanner, shuffledOptions.size());
+            Option selectedOption = shuffledOptions.get(choice - 1);
+
+            userAnswerIds[i] = selectedOption.id;
+            userAnswerTexts[i] = selectedOption.text;
+
+            if (selectedOption.id.equals(currentQuestion.correctOptionId)) {
+                score++;
+                System.out.println("Feedback: Correct answer!");
+            } else {
+                System.out.println("Feedback: Answer recorded.");
+            }
+        }
+
+        System.out.println();
+        System.out.println("=================================");
+        System.out.println("             FINAL RESULT");
+        System.out.println("=================================");
+        System.out.println("Score: " + score + " / " + totalQuestions);
+
+        for (int i = 0; i < totalQuestions; i++) {
+            Question currentQuestion = questionBank.questions.get(i);
+            Option correctOption = findOption(
+                    currentQuestion.options,
+                    currentQuestion.correctOptionId);
+
+            System.out.println();
+            System.out.println("Question " + (i + 1) + ": "
+                    + currentQuestion.question);
+            System.out.println("Your answer: " + userAnswerTexts[i]);
+            System.out.println("Correct answer: " + correctOption.text);
+
+            if (userAnswerIds[i].equals(currentQuestion.correctOptionId)) {
+                System.out.println("Result: Correct");
+            } else {
+                System.out.println("Result: Wrong");
+            }
+
+            if (currentQuestion.explanation != null
+                    && !currentQuestion.explanation.isEmpty()) {
+                System.out.println("Explanation: "
+                        + currentQuestion.explanation);
+            }
+        }
+
+        scanner.close();
+    }
+
+    private static int readChoice(Scanner scanner, int optionCount) {
+        while (true) {
+            System.out.print("Enter your answer number: ");
+
+            if (!scanner.hasNextInt()) {
+                System.out.println("Please enter a number.");
+                scanner.next();
+                continue;
+            }
+
+            int choice = scanner.nextInt();
+
+            if (choice >= 1 && choice <= optionCount) {
+                return choice;
+            }
+
+            System.out.println("Please enter a number from 1 to "
+                    + optionCount + ".");
+        }
+    }
+
+    private static Option findOption(
+            List<Option> options,
+            String optionId) {
+
+        for (Option option : options) {
+            if (option.id.equals(optionId)) {
+                return option;
+            }
+        }
+
+        throw new IllegalStateException(
+                "Correct option was not found: " + optionId);
+    }
+}
