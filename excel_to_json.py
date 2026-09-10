@@ -1,18 +1,28 @@
 """Convert an Excel question bank (.xlsx) to questions.json.
 
 Usage:
-    python excel_to_json.py questions.xlsx questions.json
-    python excel_to_json.py questions.xlsx questions.json Sheet1
+    python excel_to_json.py
+    python excel_to_json.py --excel questions.xlsx --json questions.json
+    python excel_to_json.py --excel questions.xlsx --json questions.json --sheet Sheet1
+    python excel_to_json.py --excel questions.xlsx --json questions.json --title "My Quiz"
 
 Install the one-time dependency:
     python -m pip install openpyxl
 """
 
+import argparse
 import json
-import sys
 from pathlib import Path
 
 from openpyxl import load_workbook
+
+DEFAULT_INPUT_FILE = "questions.xlsx"
+DEFAULT_OUTPUT_FILE = "questions.json"
+
+DEFAULT_TITLE = (
+    "ICSE Class 10 Computer Applications - "
+    "Strings, Arrays and User-defined Methods"
+)
 
 REQUIRED_COLUMNS = [
     "id",
@@ -32,7 +42,7 @@ def clean(value):
     return str(value).strip()
 
 
-def convert_excel_to_json(input_file, output_file, sheet_name=None):
+def convert_excel_to_json(input_file, output_file, sheet_name=None, title=None):
     workbook = load_workbook(
         filename=input_file,
         read_only=True,
@@ -94,7 +104,13 @@ def convert_excel_to_json(input_file, output_file, sheet_name=None):
                 + " must be a, b, c, or d."
             )
 
+        # QuestionBankQuiz.java expects "options" as a flat array of answer
+        # text, and "correctAnswer" holding the actual text of the correct
+        # option (not its letter) - the letter/id is only used in Excel to
+        # make the spreadsheet easier to fill in.
         options = []
+        correct_answer_text = None
+
         for option_id in ["a", "b", "c", "d"]:
             option_text = clean(row["option_" + option_id])
             if not option_text:
@@ -103,19 +119,22 @@ def convert_excel_to_json(input_file, output_file, sheet_name=None):
                     + " is empty at Excel row "
                     + str(excel_row_number)
                 )
-            options.append({"id": option_id, "text": option_text})
+            options.append(option_text)
+            if option_id == correct_option:
+                correct_answer_text = option_text
 
         questions.append({
             "id": question_id,
             "subject": clean(row["subject"]),
             "question": clean(row["question"]),
             "options": options,
-            "correctOptionId": correct_option,
+            "correctAnswer": correct_answer_text,
             "explanation": clean(row.get("explanation", "")),
         })
 
     result = {
         "version": 1,
+        "title": title if title else DEFAULT_TITLE,
         "questions": questions,
     }
 
@@ -129,19 +148,43 @@ def convert_excel_to_json(input_file, output_file, sheet_name=None):
 
 
 def main():
-    if len(sys.argv) not in (3, 4):
-        print("Usage: python excel_to_json.py input.xlsx output.json [sheet_name]")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(
+        description="Convert an Excel question bank (.xlsx) to questions.json."
+    )
+    parser.add_argument(
+        "--excel", "-e",
+        dest="input_file",
+        default=DEFAULT_INPUT_FILE,
+        help="Path to the source .xlsx file (default: " + DEFAULT_INPUT_FILE + ")",
+    )
+    parser.add_argument(
+        "--json", "-j",
+        dest="output_file",
+        default=DEFAULT_OUTPUT_FILE,
+        help="Path to write the generated JSON to (default: " + DEFAULT_OUTPUT_FILE + ")",
+    )
+    parser.add_argument(
+        "--sheet",
+        dest="sheet_name",
+        default=None,
+        help="Worksheet name to read (default: the active sheet)",
+    )
+    parser.add_argument(
+        "--title",
+        dest="title",
+        default=None,
+        help="Quiz title stored in the JSON file (default: a generic ICSE title)",
+    )
 
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
-    sheet_name = sys.argv[3] if len(sys.argv) == 4 else None
+    args = parser.parse_args()
 
     try:
-        convert_excel_to_json(input_file, output_file, sheet_name)
+        convert_excel_to_json(
+            args.input_file, args.output_file, args.sheet_name, args.title
+        )
     except Exception as error:
         print("Conversion failed:", error)
-        sys.exit(1)
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

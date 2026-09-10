@@ -413,15 +413,117 @@ The explanation is optional.
 
 ---
 
+# Running the Excel-to-JSON Converter
+
+`excel_to_json.py` reads your Excel question bank and writes a `questions.json` file in the exact format `QuestionBankQuiz.java` expects.
+
+## Requirements
+
+- Python 3 installed on your computer.
+- The `openpyxl` package (a one-time install).
+
+Check Python is installed:
+
+```bash
+python3 --version
+```
+
+(On Windows, this may just be `python --version` instead.)
+
+## Step 1 — Install the dependency (one-time)
+
+```bash
+python3 -m pip install openpyxl
+```
+
+## Step 2 — Place the files together
+
+Put these files in the same folder:
+
+```text
+excel_to_json.py
+questions.xlsx
+```
+
+A ready-to-use sample spreadsheet, `questions_sample.xlsx`, is included with this project — it has 9 example questions (3 per topic) in the correct format, so you can try the converter immediately or use it as a starting template. Rename it to `questions.xlsx`, or point `--excel` at it directly.
+
+## Step 3 — Run the converter
+
+Open a terminal in that folder and run:
+
+```bash
+python3 excel_to_json.py --excel questions.xlsx --json questions.json
+```
+
+This reads `questions.xlsx` (its active/first sheet) and writes `questions.json` in the same folder.
+
+**If you don't pass `--excel` / `--json`,** the converter defaults to `questions.xlsx` and `questions.json` in the current folder, so you can also just run:
+
+```bash
+python3 excel_to_json.py
+```
+
+**Optional arguments:**
+
+| Flag | Short form | Purpose | Default |
+|---|---|---|---|
+| `--excel` | `-e` | Input `.xlsx` file to read | `questions.xlsx` |
+| `--json` | `-j` | Output JSON file to write | `questions.json` |
+| `--sheet` | — | Worksheet name to read | the active/first sheet |
+| `--title` | — | Quiz title stored in the JSON | a generic ICSE title |
+
+Convert a specific worksheet, if your Excel file has more than one sheet:
+
+```bash
+python3 excel_to_json.py --excel questions.xlsx --json questions.json --sheet Sheet1
+```
+
+Set a custom quiz title (stored in the JSON, used to identify the question bank):
+
+```bash
+python3 excel_to_json.py --excel questions.xlsx --json questions.json --title "My Custom Quiz"
+```
+
+All flags can be combined, and used in any order.
+
+## Step 4 — Check the output
+
+On success, you'll see something like:
+
+```text
+Converted questions: 30
+Created: questions.json
+```
+
+If a row is missing an option, uses an invalid `correct_option`, or has a duplicate `id`, the converter stops and prints exactly which row caused the problem, for example:
+
+```text
+Conversion failed: correct_option at Excel row 7 must be a, b, c, or d.
+```
+
+Fix the row in Excel and run the command again.
+
+## Step 5 — Copy the JSON into the BlueJ project
+
+Copy the generated `questions.json` into:
+
+```text
+data/questions.json
+```
+
+inside your BlueJ project folder, replacing the old file.
+
+---
+
 # Updating the Question Bank
 
 When the question bank needs to be changed:
 
 1. Open the Excel question bank.
 2. Add, remove, or modify questions.
-3. Run the Excel-to-JSON converter.
-4. Generate the updated `questions.json`.
-5. Copy the new `questions.json` into the BlueJ project.
+3. Run the Excel-to-JSON converter (`python3 excel_to_json.py --excel questions.xlsx --json questions.json`).
+4. Check the terminal output for the generated `questions.json`.
+5. Copy the new `questions.json` into `data/questions.json` in the BlueJ project.
 6. Run the quiz again.
 
 The Java program does not need to be changed when only the questions are changed.
