@@ -4,7 +4,7 @@ A simple Java objective-question quiz for **ICSE Class 10 Computer Applications*
 
 The quiz reads a question bank from a JSON file and presents the questions one at a time. Students answer each question, receive feedback, and see their final score and answer review at the end.
 
-The question bank currently contains 30 original practice questions.
+The question bank currently contains 30 original practice questions. By default, each quiz run asks **5** random questions from the bank, but you can change this with a command-line argument (see [Choosing How Many Questions to Ask](#choosing-how-many-questions-to-ask)).
 
 > **Note:** These are original practice questions and are not official CISCE board questions.
 
@@ -40,10 +40,11 @@ QuestionBankQuiz/
 The Java program that:
 
 - Reads the question bank.
+- Randomly selects a set number of questions to ask (default 5).
 - Displays questions one at a time.
-- Displays four answer options.
+- Displays four answer options, numbered `1`-`4`.
 - Randomly shuffles the answer options.
-- Accepts the student's answer.
+- Accepts the student's answer as an option number.
 - Checks the answer.
 - Calculates the score.
 - Displays the final result.
@@ -162,7 +163,39 @@ class.
 
 Select the `main` method and run it.
 
-The quiz will start in the BlueJ terminal.
+BlueJ will show a dialog box asking for the `args` parameter (a `String[]`). You can:
+
+- Leave it as `{}` (empty) to ask the **default of 5 questions**, or
+- Enter a value such as `{"10"}` to ask **10 questions** instead.
+
+Click **OK**, and the quiz will start in the BlueJ terminal.
+
+---
+
+## Choosing How Many Questions to Ask
+
+The quiz does not always ask all 30 questions in the bank. Instead, it randomly picks a set number of questions each time it runs, so no two attempts are necessarily the same.
+
+By default, this number is:
+
+```text
+5
+```
+
+To ask a different number of questions, pass it as the first command-line argument:
+
+- In **BlueJ**, when the `main` method parameter dialog appears, enter it as a `String[]`, for example `{"15"}`.
+- From a **terminal**, run:
+
+```text
+java QuestionBankQuiz 15
+```
+
+This example asks 15 questions instead of the default 5.
+
+If the argument is missing, not a number, or zero or negative, the quiz falls back to the default of 5 questions and prints a short message explaining why.
+
+If the requested number is larger than the number of questions in the bank, the quiz simply asks every question in the bank.
 
 ---
 
@@ -170,24 +203,26 @@ The quiz will start in the BlueJ terminal.
 
 The quiz displays the current progress.
 
-For example:
+For example (with the default of 5 questions):
 
 ```text
 =================================
           QUESTION BANK QUIZ
 =================================
+Type the NUMBER next to the option you want,
+not the answer text itself.
 
-Completed: 0 | Pending: 30
-Question 1 / 30
+Completed: 0 | Pending: 5
+Question 1 / 5
 
 What is the output of: "ICSE".length();
 
-1. A) 3
-2. B) 4
-3. C) 5
-4. D) Error
+[1] 3
+[2] 4
+[3] 5
+[4] Error
 
-Enter your answer number:
+Enter the option number (1-4):
 ```
 
 Enter:
@@ -196,9 +231,9 @@ Enter:
 2
 ```
 
-to select the second option.
+to select the second option, `4`.
 
-The program accepts numbers from:
+Each option is shown with a single number in square brackets, `[1]` to `[4]`. There are no letters (`A`, `B`, `C`, `D`) and no second numbering scheme to keep track of — you always type the number next to the option you want, never the answer value itself. The program accepts numbers from:
 
 ```text
 1
@@ -216,24 +251,24 @@ The answer options are randomly shuffled for each question.
 For example, the same question may appear as:
 
 ```text
-1. A) 5
-2. B) Error
-3. C) 4
-4. D) 3
+[1] 5
+[2] Error
+[3] 4
+[4] 3
 ```
 
 on one run and:
 
 ```text
-1. A) 4
-2. B) 3
-3. C) Error
-4. D) 5
+[1] 4
+[2] 3
+[3] Error
+[4] 5
 ```
 
 on another run.
 
-The program checks the **answer text**, rather than assuming that a particular letter or number is always correct.
+The program checks the **answer text**, rather than assuming that a particular number always corresponds to the correct answer.
 
 ---
 
@@ -413,14 +448,16 @@ If the JSON file is missing, the quiz cannot load the question bank.
 
 The quiz supports:
 
-- 30 practice questions
+- 30 practice questions in the bank
+- A configurable number of questions per quiz run (default 5)
+- Random selection of questions from the bank
 - Strings questions
 - Arrays questions
 - User-defined methods questions
 - One question at a time
 - Question progress
 - Completed and pending question count
-- Four multiple-choice answers
+- Four multiple-choice answers, numbered `1`-`4` for simple, unambiguous entry
 - Random answer-option ordering
 - Answer validation
 - Score calculation

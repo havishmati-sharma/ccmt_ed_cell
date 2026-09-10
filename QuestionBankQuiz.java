@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 public class QuestionBankQuiz {
 
+    // Default number of questions asked when no argument is supplied.
+    private static final int DEFAULT_QUESTION_LIMIT = 5;
+
     static class QuestionBank {
         int version;
         String title;
@@ -26,6 +29,8 @@ public class QuestionBankQuiz {
 
         String jsonFile = "data/questions.json";
 
+        int questionLimit = parseQuestionLimit(args);
+
         QuestionBank questionBank;
 
         try {
@@ -44,8 +49,15 @@ public class QuestionBankQuiz {
             return;
         }
 
+        // Shuffle the question order and then take only as many questions
+        // as requested (or the whole bank, if it is smaller than the limit).
+        List<Question> allQuestions = new ArrayList<Question>(questionBank.questions);
+        Collections.shuffle(allQuestions);
+
+        int totalQuestions = Math.min(questionLimit, allQuestions.size());
+        List<Question> quizQuestions = allQuestions.subList(0, totalQuestions);
+
         Scanner scanner = new Scanner(System.in);
-        int totalQuestions = questionBank.questions.size();
         int score = 0;
 
         String[] userAnswers = new String[totalQuestions];
@@ -53,10 +65,12 @@ public class QuestionBankQuiz {
         System.out.println("=================================");
         System.out.println("          QUESTION BANK QUIZ");
         System.out.println("=================================");
+        System.out.println("Type the NUMBER next to the option you want,");
+        System.out.println("not the answer text itself.");
 
         for (int i = 0; i < totalQuestions; i++) {
 
-            Question currentQuestion = questionBank.questions.get(i);
+            Question currentQuestion = quizQuestions.get(i);
 
             List<String> shuffledOptions = new ArrayList<String>();
             for (int j = 0; j < currentQuestion.options.length; j++) {
@@ -75,9 +89,7 @@ public class QuestionBankQuiz {
             System.out.println();
 
             for (int j = 0; j < shuffledOptions.size(); j++) {
-                char optionLetter = (char) ('A' + j);
-                System.out.println((j + 1) + ". " + optionLetter + ") "
-                        + shuffledOptions.get(j));
+                System.out.println("[" + (j + 1) + "] " + shuffledOptions.get(j));
             }
 
             int choice = readChoice(scanner, shuffledOptions.size());
@@ -99,7 +111,7 @@ public class QuestionBankQuiz {
         System.out.println("Score: " + score + " / " + totalQuestions);
 
         for (int i = 0; i < totalQuestions; i++) {
-            Question currentQuestion = questionBank.questions.get(i);
+            Question currentQuestion = quizQuestions.get(i);
 
             System.out.println();
             System.out.println("Question " + (i + 1) + ": "
@@ -123,12 +135,46 @@ public class QuestionBankQuiz {
         scanner.close();
     }
 
+    /*
+     * Reads an optional command-line argument that limits how many
+     * questions are asked. If no argument is supplied, or the argument
+     * is not a valid positive number, the default limit is used.
+     *
+     * In BlueJ, right-click the class and choose "void main(String[] args)"
+     * to be prompted for the argument, e.g. enter: {"10"}
+     * to ask 10 questions. Leave the field as {} to use the default of 5.
+     */
+    private static int parseQuestionLimit(String[] args) {
+
+        if (args == null || args.length == 0) {
+            return DEFAULT_QUESTION_LIMIT;
+        }
+
+        try {
+            int limit = Integer.parseInt(args[0].trim());
+
+            if (limit <= 0) {
+                System.out.println("Number of questions must be greater than 0. "
+                        + "Using default: " + DEFAULT_QUESTION_LIMIT);
+                return DEFAULT_QUESTION_LIMIT;
+            }
+
+            return limit;
+
+        } catch (NumberFormatException e) {
+            System.out.println("Could not understand \"" + args[0]
+                    + "\" as a number of questions. Using default: "
+                    + DEFAULT_QUESTION_LIMIT);
+            return DEFAULT_QUESTION_LIMIT;
+        }
+    }
+
     private static int readChoice(Scanner scanner, int optionCount) {
         while (true) {
-            System.out.print("Enter your answer number: ");
+            System.out.print("Enter the option number (1-" + optionCount + "): ");
 
             if (!scanner.hasNextInt()) {
-                System.out.println("Please enter a number.");
+                System.out.println("Please enter a number, e.g. 1, 2, 3 or 4.");
                 scanner.next();
                 continue;
             }
