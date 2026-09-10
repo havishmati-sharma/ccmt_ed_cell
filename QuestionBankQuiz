@@ -24,7 +24,7 @@ public class QuestionBankQuiz {
 
     public static void main(String[] args) throws Exception {
 
-        String jsonFile = "questions.json";
+        String jsonFile = "data/questions.json";
 
         QuestionBank questionBank;
 
