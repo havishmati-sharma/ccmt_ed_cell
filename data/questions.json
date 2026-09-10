@@ -7,24 +7,12 @@
       "subject": "Strings",
       "question": "What is the output of: \"ICSE\".length();",
       "options": [
-        {
-          "id": "a",
-          "text": "3"
-        },
-        {
-          "id": "b",
-          "text": "4"
-        },
-        {
-          "id": "c",
-          "text": "5"
-        },
-        {
-          "id": "d",
-          "text": "Error"
-        }
+        "3",
+        "4",
+        "5",
+        "Error"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "4",
       "explanation": "The string ICSE contains four characters."
     },
     {
@@ -32,24 +20,12 @@
       "subject": "Strings",
       "question": "What is the output of: \"COMPUTER\".charAt(2);",
       "options": [
-        {
-          "id": "a",
-          "text": "C"
-        },
-        {
-          "id": "b",
-          "text": "O"
-        },
-        {
-          "id": "c",
-          "text": "M"
-        },
-        {
-          "id": "d",
-          "text": "P"
-        }
+        "C",
+        "O",
+        "M",
+        "P"
       ],
-      "correctOptionId": "c",
+      "correctAnswer": "M",
       "explanation": "String indexes start from 0, so index 2 contains M."
     },
     {
@@ -57,24 +33,12 @@
       "subject": "Strings",
       "question": "What is the output of: \"JAVA\".substring(1, 4);",
       "options": [
-        {
-          "id": "a",
-          "text": "JAV"
-        },
-        {
-          "id": "b",
-          "text": "AVA"
-        },
-        {
-          "id": "c",
-          "text": "VA"
-        },
-        {
-          "id": "d",
-          "text": "JAVA"
-        }
+        "JAV",
+        "AVA",
+        "VA",
+        "JAVA"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "AVA",
       "explanation": "The starting index is included and the ending index is excluded."
     },
     {
@@ -82,24 +46,12 @@
       "subject": "Strings",
       "question": "What is the value of \"Banana\".indexOf('a');",
       "options": [
-        {
-          "id": "a",
-          "text": "0"
-        },
-        {
-          "id": "b",
-          "text": "1"
-        },
-        {
-          "id": "c",
-          "text": "2"
-        },
-        {
-          "id": "d",
-          "text": "5"
-        }
+        "0",
+        "1",
+        "2",
+        "5"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "1",
       "explanation": "The first a occurs at index 1."
     },
     {
@@ -107,24 +59,12 @@
       "subject": "Strings",
       "question": "What is the value of \"Banana\".lastIndexOf('a');",
       "options": [
-        {
-          "id": "a",
-          "text": "1"
-        },
-        {
-          "id": "b",
-          "text": "3"
-        },
-        {
-          "id": "c",
-          "text": "4"
-        },
-        {
-          "id": "d",
-          "text": "5"
-        }
+        "1",
+        "3",
+        "4",
+        "5"
       ],
-      "correctOptionId": "d",
+      "correctAnswer": "5",
       "explanation": "The last a occurs at index 5."
     },
     {
@@ -132,24 +72,12 @@
       "subject": "Strings",
       "question": "Which method compares two strings based on their contents?",
       "options": [
-        {
-          "id": "a",
-          "text": "compare()"
-        },
-        {
-          "id": "b",
-          "text": "equals()"
-        },
-        {
-          "id": "c",
-          "text": "same()"
-        },
-        {
-          "id": "d",
-          "text": "match()"
-        }
+        "compare()",
+        "equals()",
+        "same()",
+        "match()"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "equals()",
       "explanation": "The equals() method compares the contents of two strings."
     },
     {
@@ -157,24 +85,12 @@
       "subject": "Strings",
       "question": "What is the result of: \"CAT\".compareTo(\"CAR\")?",
       "options": [
-        {
-          "id": "a",
-          "text": "Negative"
-        },
-        {
-          "id": "b",
-          "text": "Zero"
-        },
-        {
-          "id": "c",
-          "text": "Positive"
-        },
-        {
-          "id": "d",
-          "text": "Boolean true"
-        }
+        "Negative",
+        "Zero",
+        "Positive",
+        "Boolean true"
       ],
-      "correctOptionId": "c",
+      "correctAnswer": "Positive",
       "explanation": "T comes after R, so CAT is lexicographically greater than CAR."
     },
     {
@@ -182,24 +98,12 @@
       "subject": "Strings",
       "question": "What is the output of: \"  Java  \".trim();",
       "options": [
-        {
-          "id": "a",
-          "text": "\"  Java  \""
-        },
-        {
-          "id": "b",
-          "text": "\"Java\""
-        },
-        {
-          "id": "c",
-          "text": "\"Java  \""
-        },
-        {
-          "id": "d",
-          "text": "\"  Java\""
-        }
+        "\"  Java  \"",
+        "\"Java\"",
+        "\"Java  \"",
+        "\"  Java\""
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "\"Java\"",
       "explanation": "trim() removes leading and trailing spaces."
     },
     {
@@ -207,24 +111,12 @@
       "subject": "Strings",
       "question": "What is the output of: \"Java\".replace('a', 'o');",
       "options": [
-        {
-          "id": "a",
-          "text": "Jovo"
-        },
-        {
-          "id": "b",
-          "text": "Java"
-        },
-        {
-          "id": "c",
-          "text": "Jova"
-        },
-        {
-          "id": "d",
-          "text": "Jav o"
-        }
+        "Jovo",
+        "Java",
+        "Jova",
+        "Jav o"
       ],
-      "correctOptionId": "a",
+      "correctAnswer": "Jovo",
       "explanation": "Every lowercase a is replaced by o."
     },
     {
@@ -232,24 +124,12 @@
       "subject": "Strings",
       "question": "What is the result of: \"Computer\".endsWith(\"ter\");",
       "options": [
-        {
-          "id": "a",
-          "text": "true"
-        },
-        {
-          "id": "b",
-          "text": "false"
-        },
-        {
-          "id": "c",
-          "text": "0"
-        },
-        {
-          "id": "d",
-          "text": "Error"
-        }
+        "true",
+        "false",
+        "0",
+        "Error"
       ],
-      "correctOptionId": "a",
+      "correctAnswer": "true",
       "explanation": "Computer ends with the characters ter."
     },
     {
@@ -257,24 +137,12 @@
       "subject": "Arrays",
       "question": "Which expression gives the number of elements in an array named nums?",
       "options": [
-        {
-          "id": "a",
-          "text": "nums.size()"
-        },
-        {
-          "id": "b",
-          "text": "nums.length"
-        },
-        {
-          "id": "c",
-          "text": "nums.length()"
-        },
-        {
-          "id": "d",
-          "text": "size(nums)"
-        }
+        "nums.size()",
+        "nums.length",
+        "nums.length()",
+        "size(nums)"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "nums.length",
       "explanation": "For an array, length is a property, not a method."
     },
     {
@@ -282,24 +150,12 @@
       "subject": "Arrays",
       "question": "What is the last valid index of an array containing 10 elements?",
       "options": [
-        {
-          "id": "a",
-          "text": "9"
-        },
-        {
-          "id": "b",
-          "text": "10"
-        },
-        {
-          "id": "c",
-          "text": "11"
-        },
-        {
-          "id": "d",
-          "text": "0"
-        }
+        "9",
+        "10",
+        "11",
+        "0"
       ],
-      "correctOptionId": "a",
+      "correctAnswer": "9",
       "explanation": "Array indexes start at 0, so the last index is length minus 1."
     },
     {
@@ -307,24 +163,12 @@
       "subject": "Arrays",
       "question": "What is the output? int[] a = {2, 4, 6}; System.out.println(a[1]);",
       "options": [
-        {
-          "id": "a",
-          "text": "2"
-        },
-        {
-          "id": "b",
-          "text": "4"
-        },
-        {
-          "id": "c",
-          "text": "6"
-        },
-        {
-          "id": "d",
-          "text": "Error"
-        }
+        "2",
+        "4",
+        "6",
+        "Error"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "4",
       "explanation": "The element at index 1 is 4."
     },
     {
@@ -332,24 +176,12 @@
       "subject": "Arrays",
       "question": "Which search technique can be used on an unsorted array?",
       "options": [
-        {
-          "id": "a",
-          "text": "Binary search only"
-        },
-        {
-          "id": "b",
-          "text": "Linear search"
-        },
-        {
-          "id": "c",
-          "text": "Tree search"
-        },
-        {
-          "id": "d",
-          "text": "Hash search only"
-        }
+        "Binary search only",
+        "Linear search",
+        "Tree search",
+        "Hash search only"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "Linear search",
       "explanation": "Linear search checks elements one by one and does not require sorted data."
     },
     {
@@ -357,24 +189,12 @@
       "subject": "Arrays",
       "question": "What is the main requirement for binary search?",
       "options": [
-        {
-          "id": "a",
-          "text": "The array must be sorted"
-        },
-        {
-          "id": "b",
-          "text": "The array must contain strings"
-        },
-        {
-          "id": "c",
-          "text": "The array must have two dimensions"
-        },
-        {
-          "id": "d",
-          "text": "The array must contain only even numbers"
-        }
+        "The array must be sorted",
+        "The array must contain strings",
+        "The array must have two dimensions",
+        "The array must contain only even numbers"
       ],
-      "correctOptionId": "a",
+      "correctAnswer": "The array must be sorted",
       "explanation": "Binary search works correctly when the data is arranged in sorted order."
     },
     {
@@ -382,24 +202,12 @@
       "subject": "Arrays",
       "question": "In bubble sort, which elements are normally compared in each step?",
       "options": [
-        {
-          "id": "a",
-          "text": "The first and last elements"
-        },
-        {
-          "id": "b",
-          "text": "Adjacent elements"
-        },
-        {
-          "id": "c",
-          "text": "Only duplicate elements"
-        },
-        {
-          "id": "d",
-          "text": "Random elements"
-        }
+        "The first and last elements",
+        "Adjacent elements",
+        "Only duplicate elements",
+        "Random elements"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "Adjacent elements",
       "explanation": "Bubble sort compares neighboring elements and swaps them when necessary."
     },
     {
@@ -407,24 +215,12 @@
       "subject": "Arrays",
       "question": "In selection sort, what is selected during each pass?",
       "options": [
-        {
-          "id": "a",
-          "text": "A random element"
-        },
-        {
-          "id": "b",
-          "text": "The smallest or largest remaining element"
-        },
-        {
-          "id": "c",
-          "text": "Only the middle element"
-        },
-        {
-          "id": "d",
-          "text": "The array length"
-        }
+        "A random element",
+        "The smallest or largest remaining element",
+        "Only the middle element",
+        "The array length"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "The smallest or largest remaining element",
       "explanation": "Selection sort selects the minimum or maximum remaining element for its position."
     },
     {
@@ -432,49 +228,25 @@
       "subject": "Arrays",
       "question": "How many elements are present in int[][] matrix = new int[3][4];?",
       "options": [
-        {
-          "id": "a",
-          "text": "3"
-        },
-        {
-          "id": "b",
-          "text": "4"
-        },
-        {
-          "id": "c",
-          "text": "7"
-        },
-        {
-          "id": "d",
-          "text": "12"
-        }
+        "3",
+        "4",
+        "7",
+        "12"
       ],
-      "correctOptionId": "d",
-      "explanation": "There are 3 rows and 4 columns, giving 3 multiplied by 4, or 12 elements."
+      "correctAnswer": "12",
+      "explanation": "There are 3 rows and 4 columns, giving 12 elements."
     },
     {
       "id": 19,
       "subject": "Arrays",
       "question": "For int[][] a = new int[3][4], what does a.length return?",
       "options": [
-        {
-          "id": "a",
-          "text": "3"
-        },
-        {
-          "id": "b",
-          "text": "4"
-        },
-        {
-          "id": "c",
-          "text": "7"
-        },
-        {
-          "id": "d",
-          "text": "12"
-        }
+        "3",
+        "4",
+        "7",
+        "12"
       ],
-      "correctOptionId": "a",
+      "correctAnswer": "3",
       "explanation": "For a two-dimensional array, length gives the number of rows."
     },
     {
@@ -482,24 +254,12 @@
       "subject": "Arrays",
       "question": "In a square matrix, which condition identifies a main diagonal element?",
       "options": [
-        {
-          "id": "a",
-          "text": "i == j"
-        },
-        {
-          "id": "b",
-          "text": "i > j"
-        },
-        {
-          "id": "c",
-          "text": "i < j"
-        },
-        {
-          "id": "d",
-          "text": "i + j == 0"
-        }
+        "i == j",
+        "i > j",
+        "i < j",
+        "i + j == 0"
       ],
-      "correctOptionId": "a",
+      "correctAnswer": "i == j",
       "explanation": "Main diagonal elements have equal row and column indexes."
     },
     {
@@ -507,24 +267,12 @@
       "subject": "User-defined methods",
       "question": "Which return type is used when a method does not return a value?",
       "options": [
-        {
-          "id": "a",
-          "text": "null"
-        },
-        {
-          "id": "b",
-          "text": "empty"
-        },
-        {
-          "id": "c",
-          "text": "void"
-        },
-        {
-          "id": "d",
-          "text": "static"
-        }
+        "null",
+        "empty",
+        "void",
+        "static"
       ],
-      "correctOptionId": "c",
+      "correctAnswer": "void",
       "explanation": "The return type void means that the method returns no value."
     },
     {
@@ -532,24 +280,12 @@
       "subject": "User-defined methods",
       "question": "In static int add(int x, int y), what is the return type?",
       "options": [
-        {
-          "id": "a",
-          "text": "static"
-        },
-        {
-          "id": "b",
-          "text": "int"
-        },
-        {
-          "id": "c",
-          "text": "add"
-        },
-        {
-          "id": "d",
-          "text": "x"
-        }
+        "static",
+        "int",
+        "add",
+        "x"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "int",
       "explanation": "int specifies the type of value returned by the method."
     },
     {
@@ -557,24 +293,12 @@
       "subject": "User-defined methods",
       "question": "In the call add(5, 7), what are 5 and 7 called?",
       "options": [
-        {
-          "id": "a",
-          "text": "Formal parameters"
-        },
-        {
-          "id": "b",
-          "text": "Actual parameters"
-        },
-        {
-          "id": "c",
-          "text": "Return types"
-        },
-        {
-          "id": "d",
-          "text": "Method names"
-        }
+        "Formal parameters",
+        "Actual parameters",
+        "Return types",
+        "Method names"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "Actual parameters",
       "explanation": "Values supplied in a method call are actual parameters or arguments."
     },
     {
@@ -582,24 +306,12 @@
       "subject": "User-defined methods",
       "question": "In int add(int x, int y), what are x and y called?",
       "options": [
-        {
-          "id": "a",
-          "text": "Actual parameters"
-        },
-        {
-          "id": "b",
-          "text": "Formal parameters"
-        },
-        {
-          "id": "c",
-          "text": "Objects"
-        },
-        {
-          "id": "d",
-          "text": "Packages"
-        }
+        "Actual parameters",
+        "Formal parameters",
+        "Objects",
+        "Packages"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "Formal parameters",
       "explanation": "Variables written in the method definition are formal parameters."
     },
     {
@@ -607,24 +319,12 @@
       "subject": "User-defined methods",
       "question": "What is method overloading?",
       "options": [
-        {
-          "id": "a",
-          "text": "Using the same method name with different parameter lists"
-        },
-        {
-          "id": "b",
-          "text": "Using two classes with the same name"
-        },
-        {
-          "id": "c",
-          "text": "Calling a method repeatedly"
-        },
-        {
-          "id": "d",
-          "text": "Changing a variable value"
-        }
+        "Using the same method name with different parameter lists",
+        "Using two classes with the same name",
+        "Calling a method repeatedly",
+        "Changing a variable value"
       ],
-      "correctOptionId": "a",
+      "correctAnswer": "Using the same method name with different parameter lists",
       "explanation": "Overloaded methods have the same name but different parameter lists."
     },
     {
@@ -632,24 +332,12 @@
       "subject": "User-defined methods",
       "question": "Which feature helps divide a large program into smaller manageable parts?",
       "options": [
-        {
-          "id": "a",
-          "text": "Modularity using methods"
-        },
-        {
-          "id": "b",
-          "text": "Changing variable names"
-        },
-        {
-          "id": "c",
-          "text": "Adding comments only"
-        },
-        {
-          "id": "d",
-          "text": "Using more print statements"
-        }
+        "Modularity using methods",
+        "Changing variable names",
+        "Adding comments only",
+        "Using more print statements"
       ],
-      "correctOptionId": "a",
+      "correctAnswer": "Modularity using methods",
       "explanation": "Methods support modularity and make programs easier to understand and reuse."
     },
     {
@@ -657,24 +345,12 @@
       "subject": "User-defined methods",
       "question": "What is the output? static int square(int n) { return n * n; } System.out.println(square(4));",
       "options": [
-        {
-          "id": "a",
-          "text": "4"
-        },
-        {
-          "id": "b",
-          "text": "8"
-        },
-        {
-          "id": "c",
-          "text": "16"
-        },
-        {
-          "id": "d",
-          "text": "Error"
-        }
+        "4",
+        "8",
+        "16",
+        "Error"
       ],
-      "correctOptionId": "c",
+      "correctAnswer": "16",
       "explanation": "The method returns 4 multiplied by 4, which is 16."
     },
     {
@@ -682,24 +358,12 @@
       "subject": "User-defined methods",
       "question": "Which statement correctly calls a method named display that accepts no arguments?",
       "options": [
-        {
-          "id": "a",
-          "text": "display;"
-        },
-        {
-          "id": "b",
-          "text": "display();"
-        },
-        {
-          "id": "c",
-          "text": "call display;"
-        },
-        {
-          "id": "d",
-          "text": "void display;"
-        }
+        "display;",
+        "display();",
+        "call display;",
+        "void display;"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "display();",
       "explanation": "A method with no arguments is called using its name followed by parentheses."
     },
     {
@@ -707,24 +371,12 @@
       "subject": "User-defined methods",
       "question": "What must generally match between actual and formal parameters?",
       "options": [
-        {
-          "id": "a",
-          "text": "Only their variable names"
-        },
-        {
-          "id": "b",
-          "text": "Their number and compatible data types"
-        },
-        {
-          "id": "c",
-          "text": "Only their capitalization"
-        },
-        {
-          "id": "d",
-          "text": "Their return statements"
-        }
+        "Only their variable names",
+        "Their number and compatible data types",
+        "Only their capitalization",
+        "Their return statements"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "Their number and compatible data types",
       "explanation": "The number and compatible types of supplied values must match the method parameters."
     },
     {
@@ -732,24 +384,12 @@
       "subject": "User-defined methods",
       "question": "What is the output? static String greet() { return \"Hello\"; } System.out.println(greet());",
       "options": [
-        {
-          "id": "a",
-          "text": "greet"
-        },
-        {
-          "id": "b",
-          "text": "Hello"
-        },
-        {
-          "id": "c",
-          "text": "String"
-        },
-        {
-          "id": "d",
-          "text": "Nothing"
-        }
+        "greet",
+        "Hello",
+        "String",
+        "Nothing"
       ],
-      "correctOptionId": "b",
+      "correctAnswer": "Hello",
       "explanation": "The method returns the string Hello, which is printed by println()."
     }
   ]
